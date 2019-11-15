@@ -23,9 +23,9 @@
         <b-nav-item class="d-md-down-none">
           <!-- <i class="icon-location-pin"></i> -->
         </b-nav-item>
-        <!-- <DefaultHeaderDropdownAccnt/> -->
+        <DefaultHeaderDropdownAccnt/>
       </b-navbar-nav>
-      <AsideToggler class="d-none d-lg-block" />
+      <AsideToggler class="d-none d-lg-block" :defaultOpen="asideOpen ? true : false" />
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
     <div class="app-body">
@@ -87,7 +87,8 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: nav.items,
+      asideOpen: false
     }
   },
   computed: {
@@ -96,6 +97,22 @@ export default {
     },
     list () {
       return this.$route.matched.filter((route) => route.name || route.meta.label )
+    },
+  },
+  watch: {
+    $route: function() {
+      console.log('watch');
+      if (this.$route.path === "/dashboard") {
+        this.asideOpen=true;
+        this.AsideToggler.asideToggle();
+        this.AsideToggler.toggle();
+      console.log('true');
+      } else  {
+        this.asideOpen=false;
+        this.AsideToggler.asideToggle();
+        this.AsideToggler.toggle();
+      console.log('false');
+      }
     }
   }
 }

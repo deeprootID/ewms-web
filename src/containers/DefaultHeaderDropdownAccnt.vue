@@ -7,7 +7,7 @@
         alt="admin@bootstrapmaster.com" />
     </template>\
     <template slot="dropdown">
-      <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
+      <!-- <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
       <b-dropdown-item><i class="fa fa-bell-o" /> Updates
         <b-badge variant="info">{{ itemsCount }}</b-badge>
       </b-dropdown-item>
@@ -34,7 +34,7 @@
         <b-badge variant="primary">{{ itemsCount }}</b-badge>
       </b-dropdown-item>
       <b-dropdown-divider />
-      <b-dropdown-item><i class="fa fa-shield" /> Lock Account</b-dropdown-item>
+      <b-dropdown-item><i class="fa fa-shield" /> Lock Account</b-dropdown-item> -->
       <b-dropdown-item><i class="fa fa-lock" /> Logout</b-dropdown-item>
     </template>
   </AppHeaderDropdown>
