@@ -10,7 +10,7 @@
         >
           <b-row>
             <b-col>
-              <p>Luas: {{warehouse.luas}} m²</p>
+              <p>Luas: {{warehouse.width * warehouse.height}} m²</p>
             </b-col>
           </b-row>
           <b-row style="border-bottom:0.5pt solid lightgrey;">
@@ -69,7 +69,7 @@ export default {
     async getWarehouses() {
       try {
         const response = await fetch(
-          "http://localhost:3000/warehouses/get_jumlah_jenis_vehicle"
+          "https://ewms-ruby.herokuapp.com/warehouses/get_jumlah_jenis_vehicle"
         );
         const data = await response.json();
         this.warehouses = data;
