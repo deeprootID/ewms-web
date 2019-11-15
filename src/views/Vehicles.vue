@@ -6,31 +6,42 @@
         <b-card header="Truck Mixer" header-bg-variant="primary">
           <b-row>
             <b-col>
-              <p>Sedang digunakan:</p>
-            </b-col>
-            <b-col>
-              <p>250 unit</p>
+              <p>Sedang digunakan: 250 unit</p>
             </b-col>
           </b-row>
-          <b-row>
+          <b-row style="border-bottom:0.5pt solid lightgrey;">
             <b-col>
               <h5>Tersedia</h5>
             </b-col>
           </b-row>
           <b-row>
-              <b-col>
-                  <ul style="padding:0;list-style-type:none;">
-                    <li>Warehouse 1  100</li>
-                    <li>Warehouse 2   150</li>
-                    <li>Warehouse 3  200</li>
-                  </ul>
+              <b-col class="pt-1">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>Warehouse 1</li>
+                  <li>Warehouse 2</li>
+                  <li>Warehouse 3</li>
+                </ul>
+              </b-col>
+              <b-col style="border-right:0.5pt solid lightgrey;" class="pt-1" sm="2" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>100</li>
+                  <li>150</li>
+                  <li>200</li>
+                </ul>
               </b-col>
               <b-col>
-                  <ul style="padding:0;list-style-type:none;">
-                    <li>Warehouse 4  50</li>
-                    <li>Warehouse 5  100</li>
-                    <li>Warehouse 6  90</li>
-                  </ul>
+                <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+                  <li>Warehouse 4</li>
+                  <li>Warehouse 5</li>
+                  <li>Warehouse 6</li>
+                </ul>
+              </b-col>
+              <b-col sm="2" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+                  <li>50</li>
+                  <li>100</li>
+                  <li>90</li>
+                </ul>
               </b-col>
           </b-row>
         </b-card>
