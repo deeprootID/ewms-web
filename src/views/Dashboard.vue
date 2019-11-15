@@ -3,7 +3,7 @@
     <v-layer>
       <!-- <v-image :config="{
             image: image
-          }"/> -->
+      }"/>-->
       <v-rect :config="configOuter"></v-rect>
       <v-rect :config="configArea1"></v-rect>
       <v-rect :config="configArea2"></v-rect>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'dashboard',
+  name: "dashboard",
   data() {
     return {
       configKonva: {
@@ -103,10 +103,14 @@ export default {
         width: 230,
         height: 300,
         fill: "palegreen"
-      },
+      }
       // image: null
     };
   },
+
+  created() {
+    this.id = console.log(this.$route.params.id);
+  }
   // created() {
   //   const image = new window.Image();
   //   image.src = "https://konvajs.org/assets/yoda.jpg";
@@ -119,5 +123,4 @@ export default {
 </script>
 
 <style>
-  
 </style>

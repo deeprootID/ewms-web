@@ -69,18 +69,24 @@ Vue.use(Router)
 export default new Router({
   mode: 'hash', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
-  scrollBehavior: () => ({ y: 0 }),
-  routes: [
-    {
+  scrollBehavior: () => ({
+    y: 0
+  }),
+  routes: [{
       path: '/',
       redirect: '/dashboard',
       name: 'Home',
       component: DefaultContainer,
-      children: [
-        {
+      children: [{
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'dashboard/:id',
+          name: 'Dashboard_id',
+          component: Dashboard,
+          props: true
         },
         {
           path: 'warehouses',
@@ -107,10 +113,11 @@ export default new Router({
           redirect: '/theme/colors',
           name: 'Theme',
           component: {
-            render (c) { return c('router-view') }
+            render(c) {
+              return c('router-view')
+            }
           },
-          children: [
-            {
+          children: [{
               path: 'colors',
               name: 'Colors',
               component: Colors
@@ -134,18 +141,23 @@ export default new Router({
         },
         {
           path: 'users',
-          meta: { label: 'Users'},
-          component: {
-            render (c) { return c('router-view') }
+          meta: {
+            label: 'Users'
           },
-          children: [
-            {
+          component: {
+            render(c) {
+              return c('router-view')
+            }
+          },
+          children: [{
               path: '',
               component: Users,
             },
             {
               path: ':id',
-              meta: { label: 'User Details'},
+              meta: {
+                label: 'User Details'
+              },
               name: 'User',
               component: User,
             },
@@ -156,10 +168,11 @@ export default new Router({
           redirect: '/base/cards',
           name: 'Base',
           component: {
-            render (c) { return c('router-view') }
+            render(c) {
+              return c('router-view')
+            }
           },
-          children: [
-            {
+          children: [{
               path: 'cards',
               name: 'Cards',
               component: Cards
@@ -246,10 +259,11 @@ export default new Router({
           redirect: '/buttons/standard-buttons',
           name: 'Buttons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) {
+              return c('router-view')
+            }
           },
-          children: [
-            {
+          children: [{
               path: 'standard-buttons',
               name: 'Standard Buttons',
               component: StandardButtons
@@ -276,10 +290,11 @@ export default new Router({
           redirect: '/icons/font-awesome',
           name: 'Icons',
           component: {
-            render (c) { return c('router-view') }
+            render(c) {
+              return c('router-view')
+            }
           },
-          children: [
-            {
+          children: [{
               path: 'coreui-icons',
               name: 'CoreUI Icons',
               component: CoreUIIcons
@@ -306,10 +321,11 @@ export default new Router({
           redirect: '/notifications/alerts',
           name: 'Notifications',
           component: {
-            render (c) { return c('router-view') }
+            render(c) {
+              return c('router-view')
+            }
           },
-          children: [
-            {
+          children: [{
               path: 'alerts',
               name: 'Alerts',
               component: Alerts
@@ -333,10 +349,11 @@ export default new Router({
       redirect: '/pages/404',
       name: 'Pages',
       component: {
-        render (c) { return c('router-view') }
+        render(c) {
+          return c('router-view')
+        }
       },
-      children: [
-        {
+      children: [{
           path: '404',
           name: 'Page404',
           component: Page404
