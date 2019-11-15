@@ -4,8 +4,36 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+
+  data() {
+    return {
+      warehouses: []
+    }
+  },
+
+  mounted() {
+    this.getWarehouses()
+  },
+
+
+  methods: {
+    async getWarehouses() {
+      try {
+        const response = await fetch('http://localhost:3000/warehouses/get_jumlah_jenis_vehicle')
+        const data = await response.json()
+        this.warehouses = data
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
 }
+
+
+
+
 </script>
 
 <style lang="scss">
