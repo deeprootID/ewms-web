@@ -1,32 +1,52 @@
 <template>
   <div class="animated fadeIn">
-    <br>
+    <br />
     <b-row align="center" align-h="center">
       <b-col v-for="warehouse in warehouses" sm="6" md="4" :key="warehouse.id">
-        <b-card :header=warehouse.nama_warehouse header-bg-variant="primary" :sub-title=warehouse.alamat>
+        <b-card
+          :header="warehouse.nama_warehouse"
+          header-bg-variant="primary"
+          :sub-title="warehouse.alamat"
+        >
           <b-row>
             <b-col>
-              <p>Luas Terpakai</p>
+              <p>Luas: {{warehouse.luas}} m²</p>
             </b-col>
+          </b-row>
+          <b-row style="border-bottom:0.5pt solid lightgrey;">
             <b-col>
-              <p>{{warehouse.luas}} m²</p>
+              <h5>Tersedia</h5>
             </b-col>
           </b-row>
           <b-row>
-              <b-col>
-                  <ul style="list-style-type:none;">
-                    <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
-                      <span v-if="count%2==0">{{ key }} : {{value}}</span>
-                    </li>
-                  </ul>
-              </b-col>
-              <b-col>
-                  <ul style="list-style-type:none;">
-                    <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
-                      <span v-if="count%2==1">{{ key }} : {{value}}</span>
-                    </li>
-                  </ul>
-              </b-col>
+            <b-col class="pt-1">
+              <ul style="padding:0;list-style-type:none;line-height:200%">
+                <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
+                  <span v-if="count%2==0">{{ key }}</span>
+                </li>
+              </ul>
+            </b-col>
+            <b-col style="border-right:0.5pt solid lightgrey;" class="pt-1" sm="2" align="right">
+              <ul style="padding:0;list-style-type:none;line-height:200%">
+                <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
+                  <span v-if="count%2==0">{{ value }}</span>
+                </li>
+              </ul>
+            </b-col>
+            <b-col>
+              <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+                <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
+                  <span v-if="count%2==1">{{ key }}</span>
+                </li>
+              </ul>
+            </b-col>
+            <b-col sm="2" align="right">
+              <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+                <li v-for="(value, key, count) in warehouse.jumlah_jenis_vehicle">
+                  <span v-if="count%2==1">{{ value }}</span>
+                </li>
+              </ul>
+            </b-col>
           </b-row>
         </b-card>
       </b-col>
@@ -36,26 +56,28 @@
 
 <script>
 export default {
-  name: 'warehouse',
+  name: "warehouse",
   data() {
     return {
       warehouses: []
-    }
+    };
   },
   mounted() {
-    this.getWarehouses()
+    this.getWarehouses();
   },
   methods: {
     async getWarehouses() {
       try {
-        const response = await fetch('http://localhost:3000/warehouses/get_jumlah_jenis_vehicle')
-        const data = await response.json()
-        this.warehouses = data
-        console.log(data)
+        const response = await fetch(
+          "http://localhost:3000/warehouses/get_jumlah_jenis_vehicle"
+        );
+        const data = await response.json();
+        this.warehouses = data;
+        console.log(data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     }
   }
-}
+};
 </script>

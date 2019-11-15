@@ -1,5 +1,6 @@
 <template>
-  <b-tabs>
+  <div></div>
+  <!-- <b-tabs>
     <b-tab>
       <template slot="title">
         <i class='icon-list'></i>
@@ -237,15 +238,15 @@
         <small class="text-muted">25GB/256GB</small>
       </div>
     </b-tab>
-  </b-tabs>
+  </b-tabs> -->
 </template>
 
 <script>
-import { Switch as cSwitch } from '@coreui/vue'
+// import { Switch as cSwitch } from '@coreui/vue'
 export default {
   name: 'DefaultAside',
-  components: {
-    cSwitch
-  }
+  // components: {
+  //   cSwitch
+  // }
 }
 </script>
