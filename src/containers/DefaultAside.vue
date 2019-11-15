@@ -1,5 +1,124 @@
 <template>
-  <div></div>
+  <div>
+    <div style="padding:5% 15% 5% 5%;">
+      <h4><u>General Information</u></h4>
+      <b-row>
+        <b-col class="pt-1" align="left">
+          <ul style="padding:0;list-style-type:none;line-height:200%">
+            <li>Luas Wilayah</li>
+            <li>Wilayah Terpakai</li>
+            <li>Wilayah Tersedia</li>
+          </ul>
+        </b-col>
+        <b-col class="pt-1" sm="2" align="right">
+          <ul style="padding:0;list-style-type:none;line-height:200%">
+            <li>400</li>
+            <li>150</li>
+            <li>250</li>
+          </ul>
+        </b-col>
+      </b-row>
+      <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+      <b-modal title="General Information" v-model="myModal" @ok="myModal = false">
+        <h5>Informasi Umum</h5>
+        <b-row>
+          <b-col class="pt-1" align="left">
+            <ul style="padding:0;list-style-type:none;line-height:200%">
+              <li>Luas Wilayah</li>
+              <li>Wilayah Terpakai</li>
+              <li>Wilayah Tersedia</li>
+            </ul>
+          </b-col>
+          <b-col class="pt-1" sm="2" align="right">
+            <ul style="padding:0;list-style-type:none;line-height:200%">
+              <li>400</li>
+              <li>150</li>
+              <li>250</li>
+            </ul>
+          </b-col>
+        </b-row>
+        <h5>Vehicle Tersedia</h5>
+    </b-modal>
+    </div>
+    <div style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:560;" align="center">
+      <h4><u>Daftar Area</u></h4>
+      <b-card class="">
+          <blockquote class="card-blockquote">
+            <h5 align="left" style="margin-bottom:0;">Area A</h5>
+            <p align="left">Dump Truck</p>
+            <b-row>
+              <b-col class="pt-1" align="left">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>Kapasitas</li>
+                  <li>Terisi</li>
+                  <li>Sisa Kapasitas</li>
+                </ul>
+              </b-col>
+              <b-col class="pt-1" sm="4" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>400</li>
+                  <li>150</li>
+                  <li>250</li>
+                </ul>
+              </b-col>
+            </b-row>
+            <footer>
+              <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            </footer>
+          </blockquote>
+        </b-card>
+      <b-card class="">
+          <blockquote class="card-blockquote">
+            <h5 align="left" style="margin-bottom:0;">Area B</h5>
+            <p align="left">Excavator</p>
+            <b-row>
+              <b-col class="pt-1" align="left">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>Kapasitas</li>
+                  <li>Terisi</li>
+                  <li>Sisa Kapasitas</li>
+                </ul>
+              </b-col>
+              <b-col class="pt-1" sm="4" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>500</li>
+                  <li>250</li>
+                  <li>250</li>
+                </ul>
+              </b-col>
+            </b-row>
+            <footer>
+              <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            </footer>
+          </blockquote>
+        </b-card>
+      <b-card class="">
+          <blockquote class="card-blockquote">
+            <h5 align="left" style="margin-bottom:0;">Area C</h5>
+            <p align="left">Tower Crane</p>
+            <b-row>
+              <b-col class="pt-1" align="left">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>Kapasitas</li>
+                  <li>Terisi</li>
+                  <li>Sisa Kapasitas</li>
+                </ul>
+              </b-col>
+              <b-col class="pt-1" sm="4" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
+                  <li>700</li>
+                  <li>250</li>
+                  <li>450</li>
+                </ul>
+              </b-col>
+            </b-row>
+            <footer>
+              <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            </footer>
+          </blockquote>
+        </b-card>
+    </div>
+  </div>
   <!-- <b-tabs>
     <b-tab>
       <template slot="title">
@@ -248,5 +367,10 @@ export default {
   // components: {
   //   cSwitch
   // }
+  data () {
+    return {
+      myModal: false
+    }
+  }
 }
 </script>

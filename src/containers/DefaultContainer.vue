@@ -23,9 +23,9 @@
         <b-nav-item class="d-md-down-none">
           <!-- <i class="icon-location-pin"></i> -->
         </b-nav-item>
-        <!-- <DefaultHeaderDropdownAccnt/> -->
+        <DefaultHeaderDropdownAccnt/>
       </b-navbar-nav>
-      <AsideToggler class="d-none d-lg-block" />
+      <AsideToggler class="d-none d-lg-block" :defaultOpen=true />
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
     <div class="app-body">

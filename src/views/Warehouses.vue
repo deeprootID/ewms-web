@@ -15,7 +15,7 @@
             </b-col>
           </b-row>
           <b-row>
-              <b-col class="pt-1">
+              <b-col class="pt-1" align="left">
                 <ul style="padding:0;list-style-type:none;line-height:200%">
                   <li>Escavator</li>
                   <li>Dump Truck</li>
@@ -29,15 +29,15 @@
                   <li>200</li>
                 </ul>
               </b-col>
-              <b-col>
-                <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+              <b-col class="pt-1" align="left">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
                   <li>Tower Crane</li>
                   <li>Buldozer</li>
                   <li>Composter</li>
                 </ul>
               </b-col>
-              <b-col sm="2" align="right">
-                <ul style="padding:0;list-style-type:none;line-height:200%" class="pt-1">
+              <b-col class="pt-1" sm="2" align="right">
+                <ul style="padding:0;list-style-type:none;line-height:200%">
                   <li>50</li>
                   <li>100</li>
                   <li>90</li>

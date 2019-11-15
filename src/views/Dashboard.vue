@@ -26,7 +26,7 @@ export default {
     return {
       configKonva: {
         width: window.innerWidth,
-        height: window.innerHeight
+        height: window.innerHeight-60
       },
       configCircle1: {
         x: 75,
