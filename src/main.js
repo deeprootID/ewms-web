@@ -14,6 +14,15 @@ import router from './router'
 
 Vue.use(BootstrapVue)
 
+//
+
+// import Vue from 'vue';
+import VueKonva from 'vue-konva'
+
+Vue.use(VueKonva)
+
+//
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
