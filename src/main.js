@@ -8,11 +8,21 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+import VueSocketIO from 'vue-socket.io'
 
 // todo
 // cssVars()
 
 Vue.use(BootstrapVue)
+
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: 'http://ewms-api.herokuapp.com',
+  vuex: {
+    actionPrefix: 'SOCKET_',
+    mutationPrefix: 'SOCKET_'
+  }
+}))
 
 //
 
@@ -30,5 +40,13 @@ new Vue({
   template: '<App/>',
   components: {
     App
+  },
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    customEmit: function (data) {
+      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
+    }
   }
 })

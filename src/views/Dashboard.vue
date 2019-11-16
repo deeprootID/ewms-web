@@ -13,11 +13,16 @@
       <v-rect :config="configArea5"></v-rect>
       <v-rect :config="configArea6"></v-rect>
       <v-rect :config="configArea7"></v-rect>
-      <v-rect v-for="area in configAreas" :config="area" v-bind:key="area.id"></v-rect>
+      <v-rect
+        v-for="area in configAreas"
+        :config="area"
+        v-bind:key="area.id"
+      ></v-rect>
 
       <v-circle :config="configCircle1"></v-circle>
       <v-circle :config="configCircle2"></v-circle>
       <v-circle :config="configCircle3"></v-circle>
+      <v-circle :config="configCirclePusat"></v-circle>
     </v-layer>
   </v-stage>
 </template>
@@ -55,7 +60,7 @@ export default {
         radius: 7,
         fill: "salmon",
         stroke: "black",
-        strokeWidth: "1"
+        strokeWidth: 1
       },
       configCircle2: {
         x: 120,
@@ -63,7 +68,7 @@ export default {
         radius: 7,
         fill: "salmon",
         stroke: "black",
-        strokeWidth: "1"
+        strokeWidth: 1
       },
       configCircle3: {
         x: 700,
@@ -71,7 +76,15 @@ export default {
         radius: 7,
         fill: "salmon",
         stroke: "black",
-        strokeWidth: "1"
+        strokeWidth: 1
+      },
+      configCirclePusat: {
+        x: 250,
+        y: 75,
+        radius: 7,
+        fill: "salmon",
+        stroke: "black",
+        strokeWidth: 1
       },
       configOuter: {
         x: 20,
@@ -142,6 +155,13 @@ export default {
   },
   mounted() {
     this.getWarehouseDetail(1);
+    this.sockets.subscribe("message", data => {
+      magicConstantX = 106.8565664;
+      magicConstantY = -6.3038096;
+      this.configCirclePusat.y = Number(data.lat) - magicConstantY;
+      this.configCirclePusat.x = Number(data.long) - magicConstantX;
+      console.log(data.lat);
+    });
   },
   methods: {
     async getWarehouseDetail(id) {
@@ -154,7 +174,6 @@ export default {
 
         this.configOuter.height = Number(data.height);
         this.configOuter.width = Number(data.width);
-        console.log(data.areas);
         data.areas.forEach(area => {
           area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
           area.x = Number(area.x);
@@ -162,7 +181,6 @@ export default {
           area.width = Number(area.width);
           area.height = Number(area.height);
           this.configAreas.push(area);
-          console.log(this.configAreas);
         });
       } catch (error) {
         console.error(error);
@@ -181,5 +199,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
