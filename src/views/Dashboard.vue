@@ -19,17 +19,31 @@
         v-bind:key="area.id"
       ></v-rect>
 
-      <v-label
-        v-for="area in configAreas"
-        :config="area"
-        v-bind:key="area.id + 10"
+      <v-text
+        v-for="text in configTextAreas"
+        :config="{
+          text: text.text,
+          x: text.x,
+          y: text.y,
+          fontSize: 18,
+          width: 700,
+          align: center,
+          fill: 'gray',
+          fontStyle: 'bold'
+        }"
+        v-bind:key="text.id + 10"
       >
-        <v-text v-bind:text="asdasd"></v-text>
-      </v-label>
+      </v-text>
 
-      <v-circle :config="configCircle1"></v-circle>
+      <!-- <v-circle :config="configCircles"></v-circle> -->
+      <v-circle
+        v-for="circle in configCircles"
+        :config="circle"
+        v-bind:key="circle.id + 20"
+      ></v-circle>
+      <!-- <v-circle :config="configCircle1"></v-circle>
       <v-circle :config="configCircle2"></v-circle>
-      <v-circle :config="configCircle3"></v-circle>
+      <v-circle :config="configCircle3"></v-circle> -->
       <v-circle :config="configCirclePusat"></v-circle>
     </v-layer>
   </v-stage>
@@ -62,6 +76,7 @@ export default {
         width: window.innerWidth,
         height: window.innerHeight - 60
       },
+      configCircles: [],
       configCircle1: {
         x: 75,
         y: 75,
@@ -104,6 +119,7 @@ export default {
         strokeWidth: 4
       },
       configAreas: [],
+      configTextAreas: [],
       configArea1: {
         x: 40,
         y: 40,
@@ -192,7 +208,22 @@ export default {
           area.y = Number(area.y);
           area.width = Number(area.width);
           area.height = Number(area.height);
+          var textArea = area;
+          textArea.text = "Area " + area.id;
+          textArea.fontSize = 36;
           this.configAreas.push(area);
+          this.configTextAreas.push(textArea);
+        });
+        data.vehicles.forEach(vehicle => {
+          var circle = vehicle;
+          circle.y = (Number(vehicle.latitude) - -6.3038096) * 2500000 + 75;
+          circle.x = (Number(vehicle.longitude) - 106.8565664) * 2500000 + 255;
+          circle.fill = "salmon";
+          circle.stroke = "black";
+          circle.strokeWidth = 1;
+          circle.radius = 7;
+          this.configCircles.push(circle);
+          console.log(circle);
         });
       } catch (error) {
         console.error(error);
