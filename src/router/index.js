@@ -6,6 +6,7 @@ const DefaultContainer = () => import('@/containers/DefaultContainer')
 
 // New(s)
 const Dashboard = () => import('@/views/Dashboard')
+const Projects = () => import('@/views/Projects')
 const Warehouses = () => import('@/views/Warehouses')
 const Vehicles = () => import('@/views/Vehicles')
 const Settings = () => import('@/views/Settings')
@@ -87,6 +88,11 @@ export default new Router({
           name: 'Dashboard_id',
           component: Dashboard,
           props: true
+        },
+        {
+          path: 'projects',
+          name: 'Projects',
+          component: Projects
         },
         {
           path: 'warehouses',

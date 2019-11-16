@@ -2,13 +2,15 @@
   <div class="animated fadeIn">
     <br />
     <b-row align="center" align-h="center">
-      <b-col v-for="warehouse in warehouses" sm="6" md="4" :key="warehouse.id">
+      <b-col v-for="warehouse in warehouses" sm="5" :key="warehouse.id">
         <b-card
-          :header="warehouse.nama_warehouse"
           header-bg-variant="primary"
-          :sub-title="warehouse.alamat"
           @click="sendDashboard(warehouse.id)"
         >
+          <div slot="header">
+            <big>{{warehouse.nama_warehouse}}</big><br/>
+            <small>{{warehouse.alamat}}</small>
+          </div>
           <b-row>
             <b-col>
               <p>Luas: {{warehouse.width * warehouse.height}} m²</p>

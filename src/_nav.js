@@ -6,6 +6,11 @@ export default {
       icon: 'icon-home'
     },
     {
+      name: 'Projects',
+      url: '/projects',
+      icon: 'icon-layers'
+    },
+    {
       name: 'Warehouses',
       url: '/warehouses',
       icon: 'icon-grid'

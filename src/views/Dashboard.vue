@@ -1,30 +1,33 @@
 <template>
-  <v-stage :config="configKonva">
-    <v-layer>
-      <!-- <v-image :config="{
-            image: image
-      }"/>-->
+  <div>
+    <h3 style="padding-top:3%;">{{this.warehouse.nama_warehouse}}</h3>
+    <v-stage :config="configKonva">
+      <v-layer>
+        <!-- <v-image :config="{
+              image: image
+        }"/>-->
 
-      <v-rect :config="configOuter"></v-rect>
-      <v-rect :config="configArea1"></v-rect>
-      <v-rect :config="configArea2"></v-rect>
-      <v-rect :config="configArea3"></v-rect>
-      <v-rect :config="configArea4"></v-rect>
-      <v-rect :config="configArea5"></v-rect>
-      <v-rect :config="configArea6"></v-rect>
-      <v-rect :config="configArea7"></v-rect>
-      <v-rect
-        v-for="area in configAreas"
-        :config="area"
-        v-bind:key="area.id"
-      ></v-rect>
+        <v-rect :config="configOuter"></v-rect>
+        <v-rect :config="configArea1"></v-rect>
+        <v-rect :config="configArea2"></v-rect>
+        <v-rect :config="configArea3"></v-rect>
+        <v-rect :config="configArea4"></v-rect>
+        <v-rect :config="configArea5"></v-rect>
+        <v-rect :config="configArea6"></v-rect>
+        <v-rect :config="configArea7"></v-rect>
+        <v-rect
+          v-for="area in configAreas"
+          :config="area"
+          v-bind:key="area.id"
+        ></v-rect>
 
-      <v-circle :config="configCircle1"></v-circle>
-      <v-circle :config="configCircle2"></v-circle>
-      <v-circle :config="configCircle3"></v-circle>
-      <v-circle :config="configCirclePusat"></v-circle>
-    </v-layer>
-  </v-stage>
+        <v-circle :config="configCircle1"></v-circle>
+        <v-circle :config="configCircle2"></v-circle>
+        <v-circle :config="configCircle3"></v-circle>
+        <v-circle :config="configCirclePusat"></v-circle>
+      </v-layer>
+    </v-stage>
+  </div>
 </template>
 
 <script>
@@ -32,6 +35,7 @@ export default {
   name: "dashboard",
   data() {
     return {
+      warehouse: [],
       colorsArea: [
         "lightsalmon",
         "palegreen",
@@ -52,7 +56,7 @@ export default {
       ],
       configKonva: {
         width: window.innerWidth,
-        height: window.innerHeight - 60
+        height: window.innerHeight - 130
       },
       configCircle1: {
         x: 75,
@@ -174,6 +178,7 @@ export default {
           "https://ewms-ruby.herokuapp.com/warehouses/1"
         );
         const data = await response.json();
+        this.warehouse = data;
         // console.log(data);
 
         this.configOuter.height = Number(data.height);

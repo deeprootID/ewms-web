@@ -1,5 +1,5 @@
 <template>
-  <div class="app" :class="[ asideOpen ? 'aside-menu-show' : '' ]">
+  <div class="app" :class="[ asideOpen ? 'aside-menu-lg-show' : '' ]">
     <AppHeader fixed>
       <SidebarToggler class="d-lg-none" display="md" mobile />
       <b-link class="navbar-brand" to="#">
@@ -102,7 +102,9 @@ export default {
     },
   },
   mounted () {
-    this.asideOpen=true;
+    if (this.$route.path === "/dashboard") {
+      this.asideOpen=true;
+    }
   },
   watch: {
     $route: function() {
