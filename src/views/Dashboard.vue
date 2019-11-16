@@ -156,11 +156,15 @@ export default {
   mounted() {
     this.getWarehouseDetail(1);
     this.sockets.subscribe("message", data => {
-      magicConstantX = 106.8565664;
-      magicConstantY = -6.3038096;
-      this.configCirclePusat.y = Number(data.lat) - magicConstantY;
-      this.configCirclePusat.x = Number(data.long) - magicConstantX;
-      console.log(data.lat);
+      // magicConstantX = 106.8565664;
+      // magicConstantY = -6.3038096;
+      this.configCirclePusat.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
+      this.configCirclePusat.x =
+        (Number(data.long) - 106.8565664) * 2500000 + 255;
+      console.log({
+        x: this.configCirclePusat.x,
+        y: this.configCirclePusat.y
+      });
     });
   },
   methods: {
