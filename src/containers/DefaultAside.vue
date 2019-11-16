@@ -63,7 +63,7 @@
         </b-row>
       </b-modal>
     </div>
-    <div style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:560;" align="center">
+    <div style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:405px;" align="center">
       <h4><u>Daftar Area</u></h4>
       <b-card class="">
         <blockquote class="card-blockquote">

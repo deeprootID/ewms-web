@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app" :class="[ asideOpen ? 'aside-menu-show' : '' ]">
     <AppHeader fixed>
       <SidebarToggler class="d-lg-none" display="md" mobile />
       <b-link class="navbar-brand" to="#">
@@ -25,7 +25,7 @@
         </b-nav-item>
         <DefaultHeaderDropdownAccnt/>
       </b-navbar-nav>
-      <AsideToggler class="d-none d-lg-block" :defaultOpen="asideOpen ? true : false" />
+      <!-- <AsideToggler class="d-none d-lg-block" ref="aside" :defaultOpen="asideOpen ? true : false" /> -->
       <!--<AsideToggler class="d-lg-none" mobile />-->
     </AppHeader>
     <div class="app-body">
@@ -87,9 +87,11 @@ export default {
   },
   data () {
     return {
-      nav: nav.items,
-      asideOpen: false
+      nav: nav.items
     }
+  },
+  props: {
+    asideOpen: Boolean
   },
   computed: {
     name () {
@@ -99,19 +101,15 @@ export default {
       return this.$route.matched.filter((route) => route.name || route.meta.label )
     },
   },
+  mounted () {
+    this.asideOpen=true;
+  },
   watch: {
     $route: function() {
-      console.log('watch');
       if (this.$route.path === "/dashboard") {
         this.asideOpen=true;
-        this.AsideToggler.asideToggle();
-        this.AsideToggler.toggle();
-      console.log('true');
       } else  {
         this.asideOpen=false;
-        this.AsideToggler.asideToggle();
-        this.AsideToggler.toggle();
-      console.log('false');
       }
     }
   }
