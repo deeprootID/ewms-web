@@ -7,6 +7,7 @@
           :header="warehouse.nama_warehouse"
           header-bg-variant="primary"
           :sub-title="warehouse.alamat"
+          @click="sendDashboard(warehouse.id)"
         >
           <b-row>
             <b-col>
@@ -77,6 +78,9 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    sendDashboard(id) {
+      this.$router.push({ name: "Dashboard_id", params: { id: id } });
     }
   }
 };

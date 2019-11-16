@@ -4,6 +4,7 @@
       <!-- <v-image :config="{
             image: image
       }"/>-->
+
       <v-rect :config="configOuter"></v-rect>
       <v-rect :config="configArea1"></v-rect>
       <v-rect :config="configArea2"></v-rect>
@@ -12,6 +13,8 @@
       <v-rect :config="configArea5"></v-rect>
       <v-rect :config="configArea6"></v-rect>
       <v-rect :config="configArea7"></v-rect>
+      <v-rect v-for="area in configAreas" :config="area" v-bind:key="area.id"></v-rect>
+
       <v-circle :config="configCircle1"></v-circle>
       <v-circle :config="configCircle2"></v-circle>
       <v-circle :config="configCircle3"></v-circle>
@@ -24,27 +27,51 @@ export default {
   name: "dashboard",
   data() {
     return {
+      colorsArea: [
+        "lightsalmon",
+        "palegreen",
+        "lightcoral",
+        "greenyellow",
+        "coral",
+        "hotpink",
+        "LightSkyBlue"
+      ],
+      colorsVehicle: [
+        "lightsalmon",
+        "palegreen",
+        "lightcoral",
+        "greenyellow",
+        "coral",
+        "hotpink",
+        "LightSkyBlue"
+      ],
       configKonva: {
         width: window.innerWidth,
-        height: window.innerHeight-60
+        height: window.innerHeight - 60
       },
       configCircle1: {
         x: 75,
         y: 75,
         radius: 7,
-        fill: "salmon"
+        fill: "salmon",
+        stroke: "black",
+        strokeWidth: "1"
       },
       configCircle2: {
         x: 120,
         y: 75,
         radius: 7,
-        fill: "salmon"
+        fill: "salmon",
+        stroke: "black",
+        strokeWidth: "1"
       },
       configCircle3: {
         x: 700,
         y: 500,
         radius: 7,
-        fill: "salmon"
+        fill: "salmon",
+        stroke: "black",
+        strokeWidth: "1"
       },
       configOuter: {
         x: 20,
@@ -55,6 +82,7 @@ export default {
         stroke: "black",
         strokeWidth: 4
       },
+      configAreas: [],
       configArea1: {
         x: 45,
         y: 45,
@@ -103,14 +131,45 @@ export default {
         width: 230,
         height: 300,
         fill: "palegreen"
-      }
+      },
+      warehouse: []
       // image: null
     };
   },
 
   created() {
     this.id = console.log(this.$route.params.id);
+  },
+  mounted() {
+    this.getWarehouseDetail(1);
+  },
+  methods: {
+    async getWarehouseDetail(id) {
+      try {
+        const response = await fetch(
+          "https://ewms-ruby.herokuapp.com/warehouses/1"
+        );
+        const data = await response.json();
+        // console.log(data);
+
+        this.configOuter.height = Number(data.height);
+        this.configOuter.width = Number(data.width);
+        console.log(data.areas);
+        data.areas.forEach(area => {
+          area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
+          area.x = Number(area.x);
+          area.y = Number(area.y);
+          area.width = Number(area.width);
+          area.height = Number(area.height);
+          this.configAreas.push(area);
+          console.log(this.configAreas);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
   }
+
   // created() {
   //   const image = new window.Image();
   //   image.src = "https://konvajs.org/assets/yoda.jpg";
