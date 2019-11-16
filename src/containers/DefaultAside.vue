@@ -18,8 +18,18 @@
           </ul>
         </b-col>
       </b-row>
-      <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
-      <b-modal title="General Information" v-model="myModal" @ok="myModal = false">
+      <b-button
+        type="button"
+        variant="secondary"
+        @click="myModal = true"
+        class="mr-1"
+        >Lihat Detail</b-button
+      >
+      <b-modal
+        title="General Information"
+        v-model="myModal"
+        @ok="myModal = false"
+      >
         <h5>Informasi Umum</h5>
         <b-row>
           <b-col class="pt-1" align="left">
@@ -42,7 +52,9 @@
           <b-col sm="6">
             <b-card>
               <blockquote class="card-blockquote">
-                <h5 style="margin-bottom:0;" align="center"><u>Excavator</u></h5>
+                <h5 style="margin-bottom:0;" align="center">
+                  <u>Excavator</u>
+                </h5>
                 <b-row>
                   <b-col class="pt-1" align="left">
                     <ul style="padding:0;list-style-type:none;line-height:200%">
@@ -63,11 +75,19 @@
         </b-row>
       </b-modal>
     </div>
-    <div style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:405px;" align="center">
+    <div
+      style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:405px;"
+      align="center"
+    >
       <h4><u>Daftar Area</u></h4>
-      <b-card class="">
+      <b-card
+        class=""
+        v-for="area in configAreas"
+        v-bind:key="area.id"
+        v-bind:style="{ backgroundColor: area.fill }"
+      >
         <blockquote class="card-blockquote">
-          <h5 align="left" style="margin-bottom:0;">Area A</h5>
+          <h5 align="left" style="margin-bottom:0;">Area {{ area.id }}</h5>
           <p align="left">Dump Truck</p>
           <b-row>
             <b-col class="pt-1" align="left">
@@ -86,7 +106,13 @@
             </b-col>
           </b-row>
           <footer>
-            <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            <b-button
+              type="button"
+              variant="secondary"
+              @click="myModal = true"
+              class="mr-1"
+              >Lihat Detail</b-button
+            >
           </footer>
         </blockquote>
       </b-card>
@@ -111,7 +137,13 @@
             </b-col>
           </b-row>
           <footer>
-            <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            <b-button
+              type="button"
+              variant="secondary"
+              @click="myModal = true"
+              class="mr-1"
+              >Lihat Detail</b-button
+            >
           </footer>
         </blockquote>
       </b-card>
@@ -136,7 +168,13 @@
             </b-col>
           </b-row>
           <footer>
-            <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+            <b-button
+              type="button"
+              variant="secondary"
+              @click="myModal = true"
+              class="mr-1"
+              >Lihat Detail</b-button
+            >
           </footer>
         </blockquote>
       </b-card>
@@ -386,14 +424,55 @@
 <script>
 // import { Switch as cSwitch } from '@coreui/vue'
 export default {
-  name: 'DefaultAside',
+  name: "DefaultAside",
   // components: {
   //   cSwitch
   // }
-  data () {
+  data() {
     return {
-      myModal: false
+      colorsArea: [
+        "lightsalmon",
+        "palegreen",
+        "lightcoral",
+        "greenyellow",
+        "coral",
+        "hotpink",
+        "LightSkyBlue"
+      ],
+      myModal: false,
+      warehouse: [],
+      configAreas: []
+    };
+  },
+
+  mounted() {
+    this.getWarehouseDetail(1);
+  },
+
+  methods: {
+    async getWarehouseDetail(id) {
+      try {
+        const response = await fetch(
+          "https://ewms-ruby.herokuapp.com/warehouses/1"
+        );
+        const data = await response.json();
+        this.warehouse = data;
+        console.log(data);
+
+        // this.configOuter.height = Number(data.height);
+        // this.configOuter.width = Number(data.width);
+        data.areas.forEach(area => {
+          area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
+          area.x = Number(area.x);
+          area.y = Number(area.y);
+          area.width = Number(area.width);
+          area.height = Number(area.height);
+          this.configAreas.push(area);
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
-}
+};
 </script>

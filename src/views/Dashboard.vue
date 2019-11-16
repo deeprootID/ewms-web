@@ -19,6 +19,14 @@
         v-bind:key="area.id"
       ></v-rect>
 
+      <v-label
+        v-for="area in configAreas"
+        :config="area"
+        v-bind:key="area.id + 10"
+      >
+        <v-text v-bind:text="asdasd"></v-text>
+      </v-label>
+
       <v-circle :config="configCircle1"></v-circle>
       <v-circle :config="configCircle2"></v-circle>
       <v-circle :config="configCircle3"></v-circle>
