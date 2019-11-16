@@ -72,7 +72,7 @@ export default {
       },
       configCircle3: {
         x: 700,
-        y: 500,
+        y: 400,
         radius: 7,
         fill: "salmon",
         stroke: "black",
@@ -89,60 +89,60 @@ export default {
       configOuter: {
         x: 20,
         y: 20,
-        width: 1045,
-        height: 555,
+        width: 836,
+        height: 444,
         fill: "lightyellow",
         stroke: "black",
         strokeWidth: 4
       },
       configAreas: [],
       configArea1: {
-        x: 45,
-        y: 45,
-        width: 315,
-        height: 180,
+        x: 40,
+        y: 40,
+        width: 252,
+        height: 144,
         fill: "palegreen"
       },
       configArea2: {
-        x: 385,
-        y: 45,
-        width: 315,
-        height: 180,
+        x: 312,
+        y: 40,
+        width: 252,
+        height: 144,
         fill: "palegreen"
       },
       configArea3: {
-        x: 725,
-        y: 45,
-        width: 315,
-        height: 180,
+        x: 584,
+        y: 40,
+        width: 252,
+        height: 144,
         fill: "palegreen"
       },
       configArea4: {
-        x: 45,
-        y: 250,
-        width: 230,
-        height: 300,
+        x: 40,
+        y: 204,
+        width: 184,
+        height: 240,
         fill: "palegreen"
       },
       configArea5: {
-        x: 300,
-        y: 250,
-        width: 230,
-        height: 300,
+        x: 244,
+        y: 204,
+        width: 184,
+        height: 240,
         fill: "palegreen"
       },
       configArea6: {
-        x: 555,
-        y: 250,
-        width: 230,
-        height: 300,
+        x: 448,
+        y: 204,
+        width: 184,
+        height: 240,
         fill: "palegreen"
       },
       configArea7: {
-        x: 810,
-        y: 250,
-        width: 230,
-        height: 300,
+        x: 652,
+        y: 204,
+        width: 184,
+        height: 240,
         fill: "palegreen"
       },
       warehouse: []
