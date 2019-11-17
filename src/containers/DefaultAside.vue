@@ -12,11 +12,11 @@
             <li>Wilayah Tersedia</li>
           </ul>
         </b-col>
-        <b-col class="pt-1" sm="2" align="right">
+        <b-col class="pt-1" sm="4" align="right">
           <ul style="padding:0;list-style-type:none;line-height:200%">
-            <li>400</li>
-            <li>150</li>
-            <li>250</li>
+            <li>{{ (warehouse.width * warehouse.height).toFixed(2) }}m²</li>
+            <li>{{ parseFloat(warehouse.luas_occupied).toFixed(2) }}m²</li>
+            <li>{{ parseFloat(warehouse.luas_sisa).toFixed(2) }}m²</li>
           </ul>
         </b-col>
       </b-row>
@@ -83,13 +83,15 @@
           <b-row>
             <b-col class="pt-1" align="left">
               <ul style="padding:0;list-style-type:none;line-height:200%">
+                <li>Luas</li>
                 <li>Kapasitas</li>
                 <li>Terisi</li>
                 <li>Sisa Kapasitas</li>
               </ul>
             </b-col>
-            <b-col class="pt-1" sm="4" align="right">
+            <b-col class="pt-1" sm="6" align="right">
               <ul style="padding:0;list-style-type:none;line-height:200%">
+                <li>{{ area.width * area.height }}m²</li>
                 <li>{{ area.kapasitas }}</li>
                 <li>{{ area.terisi }}</li>
                 <li>{{ area.sisa_kapasitas }}</li>

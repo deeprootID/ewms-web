@@ -40,6 +40,19 @@
         <v-circle :config="configCirclePusat"></v-circle>
       </v-layer>
     </v-stage>
+    <ul>
+      Legend
+      <li style="background:lightsalmon">Mixer Truck Mini</li>
+      <li style="background:lightcoral">Excavator Big</li>
+      <li style="background:greenyellow">Dump Truck</li>
+      <li style="background:gold">Forklift</li>
+      <li style="background:hotpink">Buldozer</li>
+      <li style="background:LightSkyBlue">Compactor</li>
+      <li style="background:teal">Backhoe Loader</li>
+      <li style="background:navy">Excavator Mini</li>
+      <li style="background:fuchsia">Mixer Truck Big</li>
+      <li style="background:aqua">Motor Grader</li>
+    </ul>
   </div>
 </template>
 
@@ -182,19 +195,29 @@ export default {
     this.sockets.subscribe("message", data => {
       // magicConstantX = 106.8565664;
       // magicConstantY = -6.3038096;
-      this.configCircles.forEach(circle => {
+      var newCircle = [];
+      this.configCircles.forEach((circle, index) => {
+        //   // console.log(data.id);
         if (circle.id == data.id) {
-          circle.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
-          circle.x = (Number(data.long) - 106.8565664) * 2500000 + 255;
+          var circa = circle;
+          circa.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
+          circa.x = (Number(data.lon) - 106.8565664) * 2500000 + 255;
+          console.log(this.configCircles[index]);
+          this.$set(this.configCircles, index, circa);
+          console.log(this.configCircles[index]);
+          console.log("kepanggil");
         }
+        // console.log("kepanggil");
       });
+
       this.configCirclePusat.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
       this.configCirclePusat.x =
-        (Number(data.long) - 106.8565664) * 2500000 + 255;
+        (Number(data.lon) - 106.8565664) * 2500000 + 255;
       console.log({
         x: this.configCirclePusat.x,
         y: this.configCirclePusat.y
       });
+      console.log(data.id);
     });
   },
   methods: {
