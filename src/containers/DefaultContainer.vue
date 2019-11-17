@@ -22,6 +22,8 @@
         </b-nav-item>
         <b-nav-item class="d-md-down-none">
           <!-- <i class="icon-location-pin"></i> -->
+          <p align="right" style="margin:0;">pemasaran@pp.mail</p>
+          <p align="right" style="margin:0;">(Divisi Pemasaran)</p>
         </b-nav-item>
         <DefaultHeaderDropdownAccnt/>
       </b-navbar-nav>

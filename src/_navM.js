@@ -32,16 +32,6 @@ export default {
         ]
       },
       {
-        name: 'Warehouses',
-        url: '/warehouses',
-        icon: 'icon-grid'
-      },
-      {
-        name: 'Vehicles',
-        url: '/vehicles',
-        icon: 'icon-speedometer'
-      },
-      {
         name: 'Settings',
         url: '/settings',
         icon: 'icon-settings'

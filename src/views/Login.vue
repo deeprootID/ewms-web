@@ -19,12 +19,13 @@
                   </b-input-group>
                   <b-row>
                     <b-col cols="6">
-                      <b-button variant="primary" @click="login()" class="px-4">Login</b-button>
+                      <b-button variant="primary" @click="getLogin()" class="px-4">Login</b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
                       <b-button variant="link" class="px-0">Forgot password?</b-button>
                     </b-col>
                   </b-row>
+                  <p :hidden="[ visible ? false : true ]" style="color:red;"><small>Credential is not valid.</small></p>
                 </b-form>
               </b-card-body>
             </b-card>
@@ -45,14 +46,24 @@
 </template>
 
 <script>
+import DefaultContainer from '../containers/DefaultContainer'
 export default {
   name: 'Login',
+  components: {
+    DefaultContainer
+  },
   data() {
     return {
       email: '',
       password: '',
       role: ''
     };
+  },
+  props:{
+    visible: Boolean
+  },
+  mounted() {
+    this.visible = false;
   },
   methods : {
     async getLogin() {
@@ -68,6 +79,23 @@ export default {
           }
         );
         const data = await response.json();
+        if(data != null) {
+          if (data.user_role.id === 3) {
+            this.$router.push("/dashboard");
+            // DefaultContainer.userRole = 'Gudang';
+          }
+          else if (data.user_role.id === 2) {
+            this.$router.push("/dashboardP");
+            // DefaultContainer.userRole = 'Peralatan';
+          }
+          else if (data.user_role.id === 1) {
+            this.$router.push("/dashboardM");
+            // DefaultContainer.userRole = 'Pemasaran';
+          }
+        }
+        else {
+          this.visible=true;
+        }
         // this.warehouses = data;
         console.log(data);
       } catch (error) {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3 style="padding-top:3%;">{{ this.warehouse.nama_warehouse }}</h3>
-    <v-stage :config="configKonva">
+    <v-stage @mouseover="tooltipIn" @mousemove="tooltipIn" @dragmove="tooltipIn" @mouseout="tooltipOut" :config="configKonva">
       <v-layer>
         <!-- <v-image :config="{
               image: image
@@ -38,6 +38,12 @@
       <v-circle :config="configCircle2"></v-circle>
         <v-circle :config="configCircle3"></v-circle>-->
         <v-circle :config="configCirclePusat"></v-circle>
+      </v-layer>
+      <v-layer ref="tooltipLayer">
+        <v-label ref="tooltip" :config="labelConfig">
+          <v-tag :config="tagConfig" />
+          <v-text :config="textConfig" />
+        </v-label>
       </v-layer>
     </v-stage>
     <ul>
@@ -182,6 +188,32 @@ export default {
         height: 240,
         fill: "palegreen"
       },
+      labelConfig: {
+        opacity: 0.75,
+        visible: false,
+        listening: false
+      },
+      tagConfig: {
+        fill: 'black',
+        pointerDirection: 'down',
+        pointerWidth: 10,
+        pointerHeight: 10,
+        lineJoin: 'round',
+        shadowColor: 'black',
+        shadowBlur: 10,
+        shadowOffsetX: 10,
+        shadowOffsetY: 10,
+        shadowOpacity: 0.2
+      },
+      textConfig: {
+        text: '',
+        fontFamily: 'Calibri',
+        fontSize: 18,
+        padding: 5,
+        fill: 'white'
+      },
+      tooltip: this.$refs.tooltip,
+      tooltipLayer: this.$refs.tooltipLayer,
       warehouse: []
       // image: null
     };
@@ -257,6 +289,34 @@ export default {
       } catch (error) {
         console.error(error);
       }
+    },
+    tooltipIn(evt) {
+      var node = evt.target;
+      console.log(node);
+      console.log('in sblm if');
+      if (node) {
+      console.log('in dlm if');
+        // update tooltip
+        var mousePos = node.getStage().getPointerPosition();
+      console.log(mousePos);
+      console.log(this.tooltip);
+      console.log(this.tooltipLayer);
+        this.tooltip.position({
+          x: mousePos.x,
+          y: mousePos.y - 5
+        });
+        this.tooltip
+          .getText()
+          .text('fdafdadasfa');
+          // .text('node: ' + node.id() + ', color: ' + node.fill());
+        this.tooltip.show();
+        this.tooltipLayer.batchDraw();
+      }
+    },
+    tooltipOut(evt) {
+      console.log('out');
+      this.tooltip.hide();
+      this.tooltipLayer.draw();
     }
   }
 
