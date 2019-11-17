@@ -1,65 +1,65 @@
 <template>
-  <v-stage :config="configKonva">
-    <v-layer>
-      <!-- <v-image :config="{
-            image: image
-      }"/>-->
+  <div>
+    <h3 style="padding-top:3%;">{{ this.warehouse.nama_warehouse }}</h3>
+    <v-stage :config="configKonva">
+      <v-layer>
+        <!-- <v-image :config="{
+              image: image
+        }"/>-->
 
-      <v-rect :config="configOuter"></v-rect>
-      <v-rect :config="configArea1"></v-rect>
-      <v-rect :config="configArea2"></v-rect>
-      <v-rect :config="configArea3"></v-rect>
-      <v-rect :config="configArea4"></v-rect>
-      <v-rect :config="configArea5"></v-rect>
-      <v-rect :config="configArea6"></v-rect>
-      <v-rect :config="configArea7"></v-rect>
-      <v-rect
-        v-for="area in configAreas"
-        :config="area"
-        v-bind:key="area.id"
-      ></v-rect>
+        <v-rect :config="configOuter"></v-rect>
+        <v-rect :config="configArea1"></v-rect>
+        <v-rect :config="configArea2"></v-rect>
+        <v-rect :config="configArea3"></v-rect>
+        <v-rect :config="configArea4"></v-rect>
+        <v-rect :config="configArea5"></v-rect>
+        <v-rect :config="configArea6"></v-rect>
+        <v-rect :config="configArea7"></v-rect>
+        <v-rect v-for="area in configAreas" :config="area" v-bind:key="area.id"></v-rect>
 
-      <v-text
-        v-for="text in configTextAreas"
-        :config="{
-          text: text.text,
-          x: text.x,
-          y: text.y,
-          fontSize: 18,
-          width: 700,
-          align: center,
-          fill: 'gray',
-          fontStyle: 'bold'
-        }"
-        v-bind:key="text.id + 10"
-      >
-      </v-text>
+        <v-text
+          v-for="text in configTextAreas"
+          :config="{
+            text: text.text,
+            x: text.x,
+            y: text.y,
+            fontSize: 18,
+            width: 700,
+            align: center,
+            fill: 'gray',
+            fontStyle: 'bold'
+          }"
+          v-bind:key="text.id + 10"
+        ></v-text>
 
-      <!-- <v-circle :config="configCircles"></v-circle> -->
-      <v-circle
-        v-for="circle in configCircles"
-        :config="circle"
-        v-bind:key="circle.id + 20"
-      ></v-circle>
-      <!-- <v-circle :config="configCircle1"></v-circle>
+        <!-- <v-circle :config="configCircles"></v-circle> -->
+        <v-circle v-for="circle in configCircles" :config="circle" v-bind:key="circle.id + 20"></v-circle>
+        <!-- <v-circle :config="configCircle1"></v-circle>
       <v-circle :config="configCircle2"></v-circle>
-      <v-circle :config="configCircle3"></v-circle> -->
-      <v-circle :config="configCirclePusat"></v-circle>
-    </v-layer>
-  </v-stage>
+        <v-circle :config="configCircle3"></v-circle>-->
+        <v-circle :config="configCirclePusat"></v-circle>
+      </v-layer>
+    </v-stage>
+  </div>
 </template>
 
 <script>
 export default {
   name: "dashboard",
+  computed: {
+    someFunction: function() {
+      return console.log("gamma lama");
+    }
+  },
   data() {
     return {
+      warehouse: [],
       colorsArea: [
         "lightsalmon",
-        "palegreen",
+        "darkgreen",
         "lightcoral",
         "greenyellow",
-        "coral",
+        "gold",
         "hotpink",
         "LightSkyBlue"
       ],
@@ -74,7 +74,7 @@ export default {
       ],
       configKonva: {
         width: window.innerWidth,
-        height: window.innerHeight - 60
+        height: window.innerHeight - 130
       },
       configCircles: [],
       configCircle1: {
@@ -105,7 +105,7 @@ export default {
         x: 250,
         y: 75,
         radius: 7,
-        fill: "salmon",
+        fill: "cyan",
         stroke: "black",
         strokeWidth: 1
       },
@@ -182,6 +182,12 @@ export default {
     this.sockets.subscribe("message", data => {
       // magicConstantX = 106.8565664;
       // magicConstantY = -6.3038096;
+      this.configCircles.forEach(circle => {
+        if (circle.id == data.id) {
+          circle.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
+          circle.x = (Number(data.long) - 106.8565664) * 2500000 + 255;
+        }
+      });
       this.configCirclePusat.y = (Number(data.lat) - -6.3038096) * 2500000 + 75;
       this.configCirclePusat.x =
         (Number(data.long) - 106.8565664) * 2500000 + 255;
@@ -198,12 +204,12 @@ export default {
           "https://ewms-ruby.herokuapp.com/warehouses/1"
         );
         const data = await response.json();
+        this.warehouse = data;
         // console.log(data);
 
         this.configOuter.height = Number(data.height);
         this.configOuter.width = Number(data.width);
         data.areas.forEach(area => {
-          area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
           area.x = Number(area.x);
           area.y = Number(area.y);
           area.width = Number(area.width);
@@ -218,7 +224,7 @@ export default {
           var circle = vehicle;
           circle.y = (Number(vehicle.latitude) - -6.3038096) * 2500000 + 75;
           circle.x = (Number(vehicle.longitude) - 106.8565664) * 2500000 + 255;
-          circle.fill = "salmon";
+          circle.fill = this.colorsArea[vehicle.jenis_vehicle_id - 1];
           circle.stroke = "black";
           circle.strokeWidth = 1;
           circle.radius = 7;

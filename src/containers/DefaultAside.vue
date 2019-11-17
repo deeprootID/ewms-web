@@ -1,7 +1,9 @@
 <template>
   <div>
     <div style="padding:5% 15% 5% 5%;">
-      <h4><u>General Information</u></h4>
+      <h4>
+        <u>General Information</u>
+      </h4>
       <b-row>
         <b-col class="pt-1" align="left">
           <ul style="padding:0;list-style-type:none;line-height:200%">
@@ -18,18 +20,8 @@
           </ul>
         </b-col>
       </b-row>
-      <b-button
-        type="button"
-        variant="secondary"
-        @click="myModal = true"
-        class="mr-1"
-        >Lihat Detail</b-button
-      >
-      <b-modal
-        title="General Information"
-        v-model="myModal"
-        @ok="myModal = false"
-      >
+      <b-button type="button" variant="secondary" @click="myModal = true" class="mr-1">Lihat Detail</b-button>
+      <b-modal title="General Information" v-model="myModal" @ok="myModal = false">
         <h5>Informasi Umum</h5>
         <b-row>
           <b-col class="pt-1" align="left">
@@ -75,12 +67,12 @@
         </b-row>
       </b-modal>
     </div>
-    <div
-      style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:405px;"
-    >
-      <h4><u>Daftar Area</u></h4>
+    <div style="padding:5%;background-color:whitesmoke;overflow-y:scroll;height:405px;">
+      <h4>
+        <u>Daftar Area</u>
+      </h4>
       <b-card
-        class=""
+        class
         v-for="area in configAreas"
         v-bind:key="area.id"
         v-bind:style="{ backgroundColor: area.fill }"
@@ -99,8 +91,8 @@
             <b-col class="pt-1" sm="4" align="right">
               <ul style="padding:0;list-style-type:none;line-height:200%">
                 <li>{{ area.kapasitas }}</li>
-                <li>{{ area.kapasitas }}</li>
-                <li>{{ area.kapasitas }}</li>
+                <li>{{ area.terisi }}</li>
+                <li>{{ area.sisa_kapasitas }}</li>
               </ul>
             </b-col>
           </b-row>
@@ -346,7 +338,7 @@
         <small class="text-muted">25GB/256GB</small>
       </div>
     </b-tab>
-  </b-tabs> -->
+  </b-tabs>-->
 </template>
 
 <script>
@@ -390,7 +382,7 @@ export default {
         // this.configOuter.height = Number(data.height);
         // this.configOuter.width = Number(data.width);
         data.areas.forEach(area => {
-          area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
+          // area.fill = this.colorsArea[area.jenis_vehicle_id - 1];
           area.x = Number(area.x);
           area.y = Number(area.y);
           area.width = Number(area.width);
