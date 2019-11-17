@@ -8,7 +8,28 @@ export default {
     {
       name: 'Projects',
       url: '/projects',
-      icon: 'icon-layers'
+      icon: 'icon-layers',
+      children: [
+        {
+          name: 'Unplotted',
+          url: '/projects/unplotted',
+          icon: 'icon-clock',
+          badge: {
+            variant: 'secondary',
+            text: '1'
+          }
+        },
+        {
+          name: 'Plotted',
+          url: '/projects/plotted',
+          icon: 'icon-check'
+        },
+        {
+          name: 'Running',
+          url: '/projects/running',
+          icon: 'icon-rocket'
+        }
+      ]
     },
     {
       name: 'Warehouses',

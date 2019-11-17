@@ -32,7 +32,9 @@
       <AppSidebar fixed>
         <SidebarHeader/>
         <SidebarForm/>
-        <SidebarNav :navItems="nav"></SidebarNav>
+        <SidebarNav v-if="userRole === 'Pemasaran'" :navItems="navM"></SidebarNav>
+        <SidebarNav v-else-if="userRole === 'Peralatan'" :navItems="navP"></SidebarNav>
+        <SidebarNav v-else-if="userRole === 'Gudang'" :navItems="nav"></SidebarNav>
         <SidebarFooter/>
         <SidebarMinimizer/>
       </AppSidebar>
@@ -63,6 +65,8 @@
 
 <script>
 import nav from '@/_nav'
+import navM from '@/_navM'
+import navP from '@/_navP'
 import { Header as AppHeader, SidebarToggler, Sidebar as AppSidebar, SidebarFooter, SidebarForm, SidebarHeader, SidebarMinimizer, SidebarNav, Aside as AppAside, AsideToggler, Footer as TheFooter, Breadcrumb } from '@coreui/vue'
 import DefaultAside from './DefaultAside'
 import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
@@ -87,11 +91,14 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: nav.items,
+      navM: navM.items,
+      navP: navP.items
     }
   },
   props: {
-    asideOpen: Boolean
+    asideOpen: Boolean,
+    userRole: String
   },
   computed: {
     name () {
@@ -102,12 +109,14 @@ export default {
     },
   },
   mounted () {
+    this.userRole="Gudang";
     if (this.$route.path === "/dashboard") {
       this.asideOpen=true;
     }
   },
   watch: {
     $route: function() {
+      this.userRole="Gudang";
       if (this.$route.path === "/dashboard") {
         this.asideOpen=true;
       } else  {
