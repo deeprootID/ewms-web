@@ -5,8 +5,16 @@ import Router from 'vue-router'
 const DefaultContainer = () => import('@/containers/DefaultContainer')
 
 // New(s)
+const Login = () => import('@/views/Login')
+
 const Dashboard = () => import('@/views/Dashboard')
-const Projects = () => import('@/views/Projects')
+const DashboardM = () => import('@/views/DashboardM')
+const DashboardP = () => import('@/views/DashboardP')
+
+const Unplotted = () => import('@/views/projects/Unplotted')
+const Plotted = () => import('@/views/projects/Plotted')
+const Running = () => import('@/views/projects/Running')
+
 const Warehouses = () => import('@/views/Warehouses')
 const Vehicles = () => import('@/views/Vehicles')
 const Settings = () => import('@/views/Settings')
@@ -58,7 +66,7 @@ const Modals = () => import('@/views/notifications/Modals')
 // Views - Pages
 const Page404 = () => import('@/views/pages/Page404')
 const Page500 = () => import('@/views/pages/Page500')
-const Login = () => import('@/views/pages/Login')
+const Login2 = () => import('@/views/pages/Login')
 const Register = () => import('@/views/pages/Register')
 
 // Users
@@ -74,8 +82,13 @@ export default new Router({
     y: 0
   }),
   routes: [{
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
       path: '/',
-      redirect: '/dashboard',
+      redirect: '/login',
       name: 'Home',
       component: DefaultContainer,
       children: [{
@@ -90,9 +103,40 @@ export default new Router({
           props: true
         },
         {
+          path: 'dashboardM',
+          name: 'DashboardM',
+          component: DashboardM
+        },
+        {
+          path: 'dashboardP',
+          name: 'DashboardP',
+          component: DashboardP
+        },
+        {
           path: 'projects',
+          redirect: '/projects/unplotted',
           name: 'Projects',
-          component: Projects
+          component: {
+            render(c) {
+              return c('router-view')
+            }
+          },
+          children: [{
+              path: 'unplotted',
+              name: 'Unplotted',
+              component: Unplotted
+            },
+            {
+              path: 'plotted',
+              name: 'Plotted',
+              component: Plotted
+            },
+            {
+              path: 'running',
+              name: 'Running',
+              component: Running
+            }
+          ]
         },
         {
           path: 'warehouses',
@@ -370,9 +414,9 @@ export default new Router({
           component: Page500
         },
         {
-          path: 'login',
-          name: 'Login',
-          component: Login
+          path: 'login2',
+          name: 'Login2',
+          component: Login2
         },
         {
           path: 'register',
